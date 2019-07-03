@@ -21,6 +21,36 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ "../views/About.vue")
+    },
+    {
+      path: "/published",
+      name: "published",
+      component: () => import("../views/Published.vue")
+    },
+    {
+      path: "/statistics",
+      name: "statistics",
+      component: () => import("../views/Statistics.vue")
+    },
+    {
+      path: "/publish",
+      name: "publish",
+      component: () => import("../views/Publish_article")
+    },
+    {
+      path: "/label",
+      name: "label",
+      component: () => import("../views/Label_page")
+    },
+    {
+      path: "/export",
+      name: "export",
+      component: () => import("../views/Export_excel")
+    },
+    {
+      path: "/picture",
+      name: "picture",
+      component: () => import("../views/Picture_upload")
     }
   ]
 });

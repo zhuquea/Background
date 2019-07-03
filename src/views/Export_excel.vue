@@ -1,12 +1,12 @@
 <template>
   <div>
-    About
+    Export_excel
   </div>
 </template>
 
 <script>
 export default {
-  name: "About",
+  name: "Export_excel",
   components: {},
   props: {},
   data() {
