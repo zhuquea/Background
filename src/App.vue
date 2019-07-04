@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-container>
-      <el-header><Header></Header></el-header>
+      <el-header style="padding: 0"><Header></Header></el-header>
       <el-container>
         <el-aside width="180px"><Aside></Aside></el-aside>
         <el-main> <router-view /></el-main>
@@ -28,4 +28,5 @@ export default {
   margin: 0;
   padding: 0;
 }
+  @import "style/common";
 </style>

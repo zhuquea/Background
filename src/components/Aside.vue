@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <el-menu
-      default-active="2"
+      default-active="1"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
@@ -9,11 +9,11 @@
       text-color="#fff"
       active-text-color="#ffd04b"
     >
-      <el-menu-item index="1">
+      <el-menu-item index="1" @click="homePage">
         <i class="el-icon-s-home"></i>
         <span slot="title">首页</span>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item index="2"  @click="published">
         <i class="el-icon-position"></i>
         <span slot="title">已发布</span>
       </el-menu-item>
@@ -29,11 +29,11 @@
         <i class="el-icon-collection-tag"></i>
         <span slot="title">标签页</span>
       </el-menu-item>
-      <el-menu-item index="6">
+      <el-menu-item index="6"  @click="export_excel">
         <i class="el-icon-sold-out"></i>
         <span slot="title">导出excel</span>
       </el-menu-item>
-      <el-menu-item index="7">
+      <el-menu-item index="7" @click="picture_upload">
         <i class="el-icon-connection"></i>
         <span slot="title">图片上传</span>
       </el-menu-item>
@@ -59,6 +59,18 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    homePage () {
+      this.$router.push({name: "home"})
+    },
+    published () {
+      this.$router.push({name: "published"})
+    },
+    export_excel () {
+      this.$router.push({name:"export"})
+    },
+    picture_upload () {
+      this.$router.push({name: "picture"})
     }
   },
   mounted() {},
@@ -70,4 +82,12 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  .el-menu-vertical-demo {
+    width: 180px;
+    height: 800px;
+    position: fixed;
+    left: 0;
+    top: 60px;
+  }
+</style>
