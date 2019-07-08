@@ -62,31 +62,17 @@
     </div>
     <div class="home__fourth">
       <div class="home__fourth__dv1">
-        <el-table
-          :data="orderData"
-          style="width: 100%"
-          v-if="orderData.length > 0"
-        >
-          <el-table-column
-            prop="num"
-            label="Order_No"
-            width="480"
-            column-key="num"
-          >
+        <el-table :data="orderData" style="width: 100%" v-if="orderData.length > 0">
+          <el-table-column prop="num" label="Order_No" width="380" column-key="num" header-align="center" align="center">
           </el-table-column>
-          <el-table-column prop="price" label="Price" width="280">
+          <el-table-column prop="price" label="Price" width="280" header-align="center" align="center">
             <template slot-scope="scope">
               ￥{{ scope.row.price }}
             </template>
           </el-table-column>
-          <el-table-column prop="status" label="Status" width="100">
+          <el-table-column prop="status" label="Status" width="100" header-align="center" align="center">
             <template slot-scope="scope">
-              <el-tag
-                type="success"
-                disable-transitions
-                v-if="scope.row.status === 1"
-                >success</el-tag
-              >
+              <el-tag type="success" disable-transitions v-if="scope.row.status === 1">success</el-tag>
               <el-tag type="danger" disable-transitions v-else>pending</el-tag>
             </template>
           </el-table-column>
@@ -95,22 +81,13 @@
       <div class="home__fourth__dv2">
         <el-card>
           <div>
-            <img
-              src="https://wpimg.wallstcn.com/e7d23d71-cf19-4b90-a1cc-f56af8c0903d.png"
-              alt="图片"
-            />
+            <img src="https://wpimg.wallstcn.com/e7d23d71-cf19-4b90-a1cc-f56af8c0903d.png" alt="图片"/>
           </div>
           <div v-if="progress.length > 0" class="fourth__dv2__progressbar">
             <div v-for="(item, index) in progress" :key="index">
               {{ item.name }}
-              <el-progress
-                :percentage="item.progress * 100"
-                status="success"
-                v-if="item.progress === 1"
-              >
-              </el-progress>
-              <el-progress :percentage="item.progress * 100" v-else>
-              </el-progress>
+              <el-progress :percentage="item.progress * 100" status="success" v-if="item.progress === 1"></el-progress>
+              <el-progress :percentage="item.progress * 100" v-else></el-progress>
             </div>
           </div>
         </el-card>

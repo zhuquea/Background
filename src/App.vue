@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <el-container>
+    <router-view v-if="$route.path ==='/' || $route.path === '/register'"></router-view>
+    <el-container v-else>
       <el-header style="padding: 0"><Header></Header></el-header>
       <el-container>
         <el-aside width="180px"><Aside></Aside></el-aside>

@@ -1,17 +1,26 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "../views/Home.vue";
-
+import Login from "../views/login/Login.vue";
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
       path: "/",
+      name: "login",
+      component: Login
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: () => import("../views/register/Register.vue")
+    },
+    {
+      path: "/home",
       name: "home",
-      component: Home
+      component: () => import("../views/Home.vue")
     },
     {
       path: "/about",
@@ -51,6 +60,27 @@ export default new Router({
       path: "/picture",
       name: "picture",
       component: () => import("../views/Picture_upload")
+    },
+    {
+      path: "/edited",
+      name: "edited",
+      component: () => import("../views/edit/Edited")
+    },
+    {
+      path: "/checked",
+      name: "checked",
+      component: () => import("../views/checked/Checked")
     }
   ]
 });
+router.beforeEach((to, from, next) => {
+  let user = localStorage.getItem("user");
+  if (user) {
+    next();
+  } else if (to.path === "/" || to.path === "/register") {
+    next();
+  } else {
+    next("/");
+  }
+});
+export default router;

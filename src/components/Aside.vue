@@ -21,11 +21,11 @@
         <i class="el-icon-s-data"></i>
         <span slot="title">统计</span>
       </el-menu-item>
-      <el-menu-item index="4">
+      <el-menu-item index="4" @click="publish_article">
         <i class="el-icon-tickets"></i>
         <span slot="title">发表文章</span>
       </el-menu-item>
-      <el-menu-item index="5">
+      <el-menu-item index="5" @click="label_page">
         <i class="el-icon-collection-tag"></i>
         <span slot="title">标签页</span>
       </el-menu-item>
@@ -37,11 +37,18 @@
         <i class="el-icon-connection"></i>
         <span slot="title">图片上传</span>
       </el-menu-item>
-      <el-menu-item index="8">
+      <el-menu-item index="8" @click="exitsystem">
         <i class="el-icon-switch-button"></i>
         <span slot="title">退出系统</span>
       </el-menu-item>
     </el-menu>
+    <el-dialog title="提示" :visible.sync="centerDialogVisible" width="30%" center>
+      <span>你确定要退出系统吗？</span>
+      <span slot="footer" class="dialog-footer">
+          <el-button @click="centerDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="determine">确 定</el-button>
+        </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -51,7 +58,9 @@ export default {
   components: {},
   props: {},
   data() {
-    return {};
+    return {
+      centerDialogVisible: false
+    };
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -71,6 +80,20 @@ export default {
     },
     picture_upload () {
       this.$router.push({name: "picture"})
+    },
+    label_page () {
+      this.$router.push({name: "label"})
+    },
+    exitsystem () {
+       this.centerDialogVisible = !this.centerDialogVisible
+    },
+    determine () {
+      this.$router.push({name: "login"})
+      this.centerDialogVisible = false
+      localStorage.removeItem("user")
+    },
+    publish_article () {
+      this.$router.push({name: "publish"})
     }
   },
   mounted() {},
