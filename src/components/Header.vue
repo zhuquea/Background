@@ -43,7 +43,8 @@ export default {
       this.date1 = this.$moment(this.date).hour()
       this.date2 = this.$moment(this.date).minute()
       this.date3 = this.$moment(this.date).second()
-      this.logintime = this.year + "年" + this.month + "月" + this.date0 + "日" + this.date1 + "时" +this.date2 + "分" + this.date3 + "秒"
+      // this.logintime = this.year + "年" + this.month + "月" + this.date0 + "日" + this.date1 + "时" +this.date2 + "分" + this.date3 + "秒"
+    this.logintime = localStorage.getItem("timer")
       this.timenow = this.$moment(new Date()).hour()
   },
   created() {},
@@ -64,7 +65,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 1000;
+    z-index: 100000;
   }
   .header__dv1 {
 padding-left: 50px;

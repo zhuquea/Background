@@ -13,11 +13,11 @@
         <i class="el-icon-s-home"></i>
         <span slot="title">首页</span>
       </el-menu-item>
-      <el-menu-item index="2"  @click="published">
+      <el-menu-item index="2" @click="published">
         <i class="el-icon-position"></i>
         <span slot="title">已发布</span>
       </el-menu-item>
-      <el-menu-item index="3">
+      <el-menu-item index="3" @click="statistics">
         <i class="el-icon-s-data"></i>
         <span slot="title">统计</span>
       </el-menu-item>
@@ -29,7 +29,7 @@
         <i class="el-icon-collection-tag"></i>
         <span slot="title">标签页</span>
       </el-menu-item>
-      <el-menu-item index="6"  @click="export_excel">
+      <el-menu-item index="6" @click="export_excel">
         <i class="el-icon-sold-out"></i>
         <span slot="title">导出excel</span>
       </el-menu-item>
@@ -42,12 +42,17 @@
         <span slot="title">退出系统</span>
       </el-menu-item>
     </el-menu>
-    <el-dialog title="提示" :visible.sync="centerDialogVisible" width="30%" center>
+    <el-dialog
+      title="提示"
+      :visible.sync="centerDialogVisible"
+      width="30%"
+      center
+    >
       <span>你确定要退出系统吗？</span>
       <span slot="footer" class="dialog-footer">
-          <el-button @click="centerDialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="determine">确 定</el-button>
-        </span>
+        <el-button @click="centerDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="determine">确 定</el-button>
+      </span>
     </el-dialog>
   </div>
 </template>
@@ -69,31 +74,34 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
-    homePage () {
-      this.$router.push({name: "home"})
+    homePage() {
+      this.$router.push({ name: "home" });
     },
-    published () {
-      this.$router.push({name: "published"})
+    published() {
+      this.$router.push({ name: "published" });
     },
-    export_excel () {
-      this.$router.push({name:"export"})
+    export_excel() {
+      this.$router.push({ name: "export" });
     },
-    picture_upload () {
-      this.$router.push({name: "picture"})
+    picture_upload() {
+      this.$router.push({ name: "picture" });
     },
-    label_page () {
-      this.$router.push({name: "label"})
+    label_page() {
+      this.$router.push({ name: "label" });
     },
-    exitsystem () {
-       this.centerDialogVisible = !this.centerDialogVisible
+    exitsystem() {
+      this.centerDialogVisible = !this.centerDialogVisible;
     },
-    determine () {
-      this.$router.push({name: "login"})
-      this.centerDialogVisible = false
-      localStorage.removeItem("user")
+    determine() {
+      this.$router.push({ name: "login" });
+      this.centerDialogVisible = false;
+      localStorage.removeItem("user");
     },
-    publish_article () {
-      this.$router.push({name: "publish"})
+    publish_article() {
+      this.$router.push({ name: "publish" });
+    },
+    statistics () {
+      this.$router.push({name: "statistics"})
     }
   },
   mounted() {},
@@ -106,11 +114,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .el-menu-vertical-demo {
-    width: 180px;
-    height: 800px;
-    position: fixed;
-    left: 0;
-    top: 60px;
-  }
+.el-menu-vertical-demo {
+  width: 180px;
+  height: 800px;
+  position: fixed;
+  left: 0;
+  top: 60px;
+}
 </style>

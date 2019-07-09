@@ -146,6 +146,9 @@ export default {
             this.$message.success("登录成功");
             this.$store.state.user = this.ruleForm1.name;
             localStorage.setItem("user", JSON.stringify(res.data));
+            let date = new Date()
+            let timer = this.$moment(date).format("YYYY年MM月DD日 HH时mm分ss秒")
+            localStorage.setItem("timer",timer)
             this.$router.push({ name: "home" });
           }
           console.log(res);

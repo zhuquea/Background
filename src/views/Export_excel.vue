@@ -17,13 +17,37 @@
         stripe
         style="width: 100%"
       >
-        <el-table-column prop="NAME" label="名称" width="380" header-align="center" align="center">
+        <el-table-column
+          prop="NAME"
+          label="名称"
+          width="380"
+          header-align="center"
+          align="center"
+        >
         </el-table-column>
-        <el-table-column prop="GOODS_SERIAL_NUMBER" label="商品编号" width="180" header-align="center" align="center">
+        <el-table-column
+          prop="GOODS_SERIAL_NUMBER"
+          label="商品编号"
+          width="180"
+          header-align="center"
+          align="center"
+        >
         </el-table-column>
-        <el-table-column prop="ORI_PRICE" label="原价" width="180" header-align="center" align="center">
+        <el-table-column
+          prop="ORI_PRICE"
+          label="原价"
+          width="180"
+          header-align="center"
+          align="center"
+        >
         </el-table-column>
-        <el-table-column prop="PRESENT_PRICE" label="现价" header-align="center" align="center"> </el-table-column>
+        <el-table-column
+          prop="PRESENT_PRICE"
+          label="现价"
+          header-align="center"
+          align="center"
+        >
+        </el-table-column>
         <el-table-column label="操作" header-align="center" align="center">
           <template slot-scope="scope">
             <el-button
@@ -89,10 +113,20 @@
       :tableData="tableData"
     ></Paging>
     <div class="export__last">
-      <download-excel class="export-excel-wrapper" :data="tableData.slice(pagesize * (currentPage - 1), pagesize * currentPage)">
+      <download-excel
+        class="export-excel-wrapper"
+        :data="
+          tableData.slice(pagesize * (currentPage - 1), pagesize * currentPage)
+        "
+      >
         <el-button type="primary">导出xls</el-button>
       </download-excel>
-      <download-excel class="export-excel-wrapper" :data="tableData.slice(pagesize * (currentPage - 1), pagesize * currentPage)">
+      <download-excel
+        class="export-excel-wrapper"
+        :data="
+          tableData.slice(pagesize * (currentPage - 1), pagesize * currentPage)
+        "
+      >
         <el-button type="danger">导出csv</el-button>
       </download-excel>
     </div>
@@ -116,7 +150,7 @@ export default {
       centerDialogVisible: false,
       centerDialogVisible2: false,
       obj: {},
-      obj2: {},
+      obj2: {}
     };
   },
   methods: {
@@ -192,7 +226,7 @@ export default {
   margin-top: 20px;
   display: flex;
 }
-  .export-excel-wrapper {
-    margin-left: 20px;
-  }
+.export-excel-wrapper {
+  margin-left: 20px;
+}
 </style>
