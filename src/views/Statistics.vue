@@ -56,6 +56,8 @@ export default {
       arrAray: [],
       arrAray2: [],
       arrAray3: [],
+      arr: [],
+      arr1: [],
       chartData2: {
         columns: ["source", "num"],
         rows: []
@@ -72,22 +74,22 @@ export default {
         .req("api/article/allArticle")
         .then(response => {
           if (response) {
-            this.statisticsData = response.data;
-            let num1 = 0;
-            let num2 = 0;
-            this.statisticsData.map(item => {
-              if (
-                this.$moment(item.date).date() ===
-                this.$moment(new Date()).date()
-              ) {
-                num1++;
-              }
-              if (item.source === "original") {
-                num2++;
-              }
-            });
-            this.todayreleased = num1;
-            this.original = num2;
+            // this.statisticsData = response.data;
+            // let num1 = 0;
+            // let num2 = 0;
+            // this.statisticsData.map(item => {
+            //   if (
+            //     this.$moment(item.date).date() ===
+            //     this.$moment(new Date()).date()
+            //   ) {
+            //     num1++;
+            //   }
+            //   if (item.source === "original") {
+            //     num2++;
+            //   }
+            // });
+            // this.todayreleased = num1;
+            // this.original = num2;
             this.arrAray = _.groupBy(response.data, "category");
             let arrArr1 = [];
             let arrArr2 = [];
@@ -115,21 +117,64 @@ export default {
                 num: arrArr4[j].length
               });
             }
+            let res = response.data;
+            res.map(item => {
+              if (item.date.indexOf("Z") !== -1) {
+                item.date = this.$moment(item.date).format("YYYY年M月D日");
+              }
+              if (item.date.indexOf("时") !== -1) {
+                let index = item.date.indexOf("日");
+                item.date = item.date.substr(0, index + 1);
+              }
+            });
+
             this.arrAray3 = _.groupBy(response.data, "date");
             let arrArr5 = [];
             let arrArr6 = [];
-            console.log(this.arrAray3);
             for (let key in this.arrAray3) {
               arrArr5.push(key);
               arrArr6.push(this.arrAray3[key]);
             }
-            console.log(arrArr5);
-            for (let k = 0; k < arrArr5.length; k++) {
+            arrArr5.map(item => {
+              this.arr.push(item);
+            });
+            this.arr.map((item, idx) => {
+              if (item.indexOf("时") !== -1) {
+                let index = item.indexOf("日");
+                item = item.substr(0, index + 1);
+              }
               this.chartData3.rows.push({
-                date: this.$moment(arrArr5[k]).format("YYYY年MM月DD日"),
-                num: arrArr6[k].length
+                date: item,
+                num: arrArr6[idx].length
               });
-            }
+            });
+            this.statisticsData = response.data;
+            let num1 = 0;
+            let num2 = 0;
+            this.statisticsData.map(item => {
+              let index1 = item.date.indexOf("年");
+              let index2 = item.date.indexOf("月");
+              let index3 = item.date.indexOf("日");
+              item.date =
+                item.date.substring(0, index1) +
+                "-" +
+                item.date.substring(index1 + 1, index2) +
+                "-" +
+                item.date.substring(index2 + 1, index3);
+            });
+            this.statisticsData.map(item => {
+              if (
+                this.$moment(item.date).date() ===
+                this.$moment(new Date()).date()
+              ) {
+                num1++;
+              }
+              if (item.source === "original") {
+                num2++;
+              }
+            });
+            this.todayreleased = num1;
+            this.original = num2;
           }
         })
         .catch(err => {

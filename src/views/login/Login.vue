@@ -40,7 +40,7 @@
             <span
               class="vercode__picture"
               v-html="src"
-              @click="getvercode"
+              @click="getvercode1"
             ></span>
           </el-form-item>
         </el-form>
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+  import _ from "lodash"
 export default {
   name: "Login",
   components: {},
@@ -177,7 +178,9 @@ export default {
   mounted() {
     this.getvercode();
   },
-  created() {},
+  created() {
+    this.getvercode1 = _.debounce(this.getvercode,350)
+  },
   filters: {},
   computed: {},
   watch: {},

@@ -51,16 +51,15 @@
             </el-select>
           </el-form-item>
           <el-form-item label="发布时间" required>
-            <el-col :span="11">
-              <el-form-item prop="date">
-                <el-date-picker
-                  v-model="editedData.date"
-                  type="date"
-                  placeholder="选择日期"
-                  style="width: 200px;"
-                ></el-date-picker>
-              </el-form-item>
-            </el-col>
+            <el-form-item prop="date">
+              <el-date-picker
+                v-model="editedData.date"
+                type="datetime"
+                placeholder="选择日期时间"
+                :picker-options="pickerOptions"
+              >
+              </el-date-picker>
+            </el-form-item>
           </el-form-item>
         </div>
       </el-form>
@@ -104,6 +103,32 @@ export default {
             required: true,
             message: "请选择日期",
             trigger: "blur"
+          }
+        ]
+      },
+      pickerOptions: {
+        shortcuts: [
+          {
+            text: "今天",
+            onClick(picker) {
+              picker.$emit("pick", new Date());
+            }
+          },
+          {
+            text: "昨天",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit("pick", date);
+            }
+          },
+          {
+            text: "一周前",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit("pick", date);
+            }
           }
         ]
       }

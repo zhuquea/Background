@@ -47,11 +47,22 @@
            </el-select>
          </el-form-item>
          <el-form-item label="发布时间" required>
-           <el-col :span="11">
+<!--           <el-col :span="11">-->
+<!--             <el-form-item prop="date1">-->
+<!--               <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 200px;"></el-date-picker>-->
+<!--             </el-form-item>-->
+<!--           </el-col>-->
+           <div class="block">
              <el-form-item prop="date1">
-               <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 200px;"></el-date-picker>
+             <el-date-picker
+                     v-model="ruleForm.date1"
+                     type="datetime"
+                     placeholder="选择日期时间"
+                     align="right"
+                     :picker-options="pickerOptions">
+             </el-date-picker>
              </el-form-item>
-           </el-col>
+           </div>
          </el-form-item>
        </div>
       </el-form>
@@ -120,7 +131,29 @@ export default {
         ]
       },
       textvalue: "",
-      showhide: true
+      showhide: true,
+      pickerOptions: {
+        shortcuts: [{
+          text: '今天',
+          onClick(picker) {
+            picker.$emit('pick', new Date());
+          }
+        }, {
+          text: '昨天',
+          onClick(picker) {
+            const date = new Date();
+            date.setTime(date.getTime() - 3600 * 1000 * 24);
+            picker.$emit('pick', date);
+          }
+        }, {
+          text: '一周前',
+          onClick(picker) {
+            const date = new Date();
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+            picker.$emit('pick', date);
+          }
+        }]
+      }
     };
   },
   methods: {

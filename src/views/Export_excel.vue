@@ -118,6 +118,7 @@
         :data="
           tableData.slice(pagesize * (currentPage - 1), pagesize * currentPage)
         "
+        :fields="json_fields"
       >
         <el-button type="primary">导出xls</el-button>
       </download-excel>
@@ -125,7 +126,7 @@
         class="export-excel-wrapper"
         :data="
           tableData.slice(pagesize * (currentPage - 1), pagesize * currentPage)
-        "
+        " type="csv"
       >
         <el-button type="danger">导出csv</el-button>
       </download-excel>
@@ -143,6 +144,25 @@ export default {
   props: {},
   data() {
     return {
+      json_fields: {
+        "Complete name": "name", //常规字段
+        Telephone: "phone.mobile", //支持嵌套属性
+        "Telephone 2": {
+          field: "phone.landline",
+          //自定义回调函数
+          callback: value => {
+            return `Landline Phone - ${value}`;
+          }
+        }
+      },
+      json_meta: [
+        [
+          {
+            " key ": " charset ",
+            " value ": " utf- 8 "
+          }
+        ]
+      ],
       input: "",
       tableData: [],
       pagesize: 10,
