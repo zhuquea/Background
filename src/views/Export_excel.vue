@@ -145,8 +145,9 @@ export default {
   data() {
     return {
       json_fields: {
-        "Complete name": "name", //常规字段
-        Telephone: "phone.mobile", //支持嵌套属性
+        "Complete name": "NAME", //常规字段
+        Telephone: "ORI_PRICE",
+        Telephone2: "PRESENT_PRICE",//支持嵌套属性
         "Telephone 2": {
           field: "phone.landline",
           //自定义回调函数

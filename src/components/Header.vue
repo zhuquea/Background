@@ -65,7 +65,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 100000;
+    z-index: 2000;
   }
   .header__dv1 {
 padding-left: 50px;

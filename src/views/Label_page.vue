@@ -117,16 +117,16 @@ export default {
     },
     readedall() {
       this.arrlabel = [];
-      this.arrlabel1.forEach((item) => {
-        this.arrlabel2.push(item)
-      })
+      this.arrlabel1.forEach(item => {
+        this.arrlabel2.push(item);
+      });
       this.arrlabel1 = [];
     },
     deleteall() {
       this.arrlabel = [];
-     this.arrlabel2.forEach( (item) => {
-       this.arrlabel3.push(item)
-     })
+      this.arrlabel2.forEach(item => {
+        this.arrlabel3.push(item);
+      });
       this.arrlabel2 = [];
     },
     reductionedall() {
@@ -151,6 +151,7 @@ export default {
   height: 30px;
   text-align: center;
   margin-left: 20px;
+  cursor: pointer;
 }
 .label__first > span:hover {
   color: darkturquoise;

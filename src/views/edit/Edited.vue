@@ -163,6 +163,24 @@ export default {
   },
   mounted() {
     this.editedData = JSON.parse(this.$route.query.data);
+    let index1 = this.editedData.date.indexOf("年");
+    let index2 = this.editedData.date.indexOf("月");
+    let index3 = this.editedData.date.indexOf("日");
+    let index4 = this.editedData.date.indexOf("时");
+    let index5 = this.editedData.date.indexOf("分");
+    let index6 = this.editedData.date.indexOf("秒");
+    this.editedData.date =
+      this.editedData.date.substring(0, index1) +
+      "-" +
+      this.editedData.date.substring(index1 + 1, index2) +
+      "-" +
+      this.editedData.date.substring(index2 + 1, index3) +
+      " " +
+      this.editedData.date.substring(index3 + 1, index4) +
+      ":" +
+      this.editedData.date.substring(index4 + 1, index5) +
+      ":" +
+      this.editedData.date.substring(index5 + 1, index6);
     console.log(this.editedData);
   },
   created() {},

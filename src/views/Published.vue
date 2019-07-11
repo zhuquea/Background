@@ -187,11 +187,9 @@ export default {
           _id: scope.row._id
         })
         .then(response => {
-          if (response) {
             if (response.code === 200) {
               this.getArticledata();
             }
-          }
         })
         .catch(err => {
           console.log(err);

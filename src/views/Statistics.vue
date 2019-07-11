@@ -98,6 +98,7 @@ export default {
               arrArr1.push(key);
               arrArr2.push(this.arrAray[key]);
             }
+            console.log(arrArr2);
             for (let i = 0; i < arrArr1.length; i++) {
               this.chartData1.rows.push({
                 category: arrArr1[i],

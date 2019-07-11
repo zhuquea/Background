@@ -58,7 +58,7 @@
 </template>
 
 <script>
-  import _ from "lodash"
+import _ from "lodash";
 export default {
   name: "Login",
   components: {},
@@ -147,9 +147,11 @@ export default {
             this.$message.success("登录成功");
             this.$store.state.user = this.ruleForm1.name;
             localStorage.setItem("user", JSON.stringify(res.data));
-            let date = new Date()
-            let timer = this.$moment(date).format("YYYY年MM月DD日 HH时mm分ss秒")
-            localStorage.setItem("timer",timer)
+            let date = new Date();
+            let timer = this.$moment(date).format(
+              "YYYY年MM月DD日 HH时mm分ss秒"
+            );
+            localStorage.setItem("timer", timer);
             this.$router.push({ name: "home" });
           }
           console.log(res);
@@ -179,7 +181,7 @@ export default {
     this.getvercode();
   },
   created() {
-    this.getvercode1 = _.debounce(this.getvercode,350)
+    this.getvercode1 = _.debounce(this.getvercode, 350);
   },
   filters: {},
   computed: {},
